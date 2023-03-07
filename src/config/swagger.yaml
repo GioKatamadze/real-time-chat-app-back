@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: Real-Time Chat App
+  description: Real-Time Chat App API
+  version: 0.1.9
+
+servers:
+  # - url: https://entertainment-mongo-production.up.railway.app/api
+  #   description: production server
+  - url: http://localhost:5000/api
+    description: local server
+paths:
+  /profile:
+    get:
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /register:
+    post:
+      tags:
+        - Users
+      requestBody:
+        description: create user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              name: Giorgi Katamadze
+              email: test_email@example.com
+              password: test123
+      responses:
+        "200":
+          description: user created
+  /login:
+    post:
+      tags:
+        - Users
+      requestBody:
+        description: login user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: test_email@example.com
+              password: test123
+      responses:
+        "200":
+          description: user loggedin
+  /chatrooms:
+    get:
+      tags:
+        - ChatRooms
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /chatrooms/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+          required: true
+      tags:
+        - ChatRooms
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /users:
+    get:
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /message:
+    post:
+      tags:
+        - Messages
+      requestBody:
+        description: send message
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                chatroomId:
+                  type: number
+                userId:
+                  type: number
+            example:
+              content: Awesome idea! Trying to find framework-specific project within hubs can be tedious
+              chatroomId: 1
+              userId: 2
+      responses:
+        "200":
+          description: comment created
