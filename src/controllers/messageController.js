@@ -1,8 +1,7 @@
 import Message from "../models/messageModel.js";
-import ChatRoom from "../models/chatRoomModel.js";
 import addMessageSchema from "../schemas/addMessage.js";
 
-export const addComment = async (req, res) => {
+const addMessage = async (req, res) => {
   const { body } = req;
 
   const validator = await addMessageSchema(body);
@@ -22,6 +21,7 @@ export const addComment = async (req, res) => {
   };
 
   await Message.create({ ...newMessage });
-  const chatroom = await ChatRoom.findOne({ id: chatroomId });
   return res.status(201).json({ ...newMessage });
 };
+
+export default addMessage;
