@@ -8,7 +8,7 @@ import connectToMongo from "./config/mongo.js";
 import userRouter from "./routes/userRouter.js";
 import messageRouter from "./routes/messageRouter.js";
 import chatroomRouter from "./routes/chatroomRouter.js";
-import swaggerMiddleware from "./middlewares/swagger-middleware.js";
+import swaggerMiddleware from "./middlewares/swaggerMiddleware.js";
 
 const app = express();
 dotenv.config();

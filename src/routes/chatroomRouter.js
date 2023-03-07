@@ -2,7 +2,7 @@ import Express from "express";
 import {
   getAllChatrooms,
   getSingleChatroom,
-} from "../controllers/Feedback-controller.js";
+} from "../controllers/chatroomcontroller.js";
 
 const chatroomRouter = Express.Router();
 
