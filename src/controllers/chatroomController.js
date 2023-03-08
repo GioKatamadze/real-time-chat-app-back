@@ -15,13 +15,11 @@ export const getAllChatrooms = async (_, res) => {
 export const getSingleChatroom = async (req, res) => {
   const { id } = req.params;
   const chatroom = await ChatRoom.findOne({ id: +id });
-
   if (!chatroom) {
     return res
       .status(401)
       .json({ message: "There is no chatroom with this id" });
   }
-
   const messages = await Message.find({ chatroomId: +id });
   const newMessages = messages.map((message) => {
     return {
@@ -31,12 +29,10 @@ export const getSingleChatroom = async (req, res) => {
       id: message.id,
     };
   });
-
   const newChatroom = {
     title: chatroom.title,
     id: chatroom.id,
     messages: newMessages,
   };
-
   return res.status(200).json(newChatroom);
 };
