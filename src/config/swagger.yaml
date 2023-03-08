@@ -5,8 +5,8 @@ info:
   version: 0.1.9
 
 servers:
-  # - url: https://entertainment-mongo-production.up.railway.app/api
-  #   description: production server
+  - url: https://real-time-chat-app-back-production.up.railway.app/api
+    description: production server
   - url: http://localhost:5000/api
     description: local server
 paths:

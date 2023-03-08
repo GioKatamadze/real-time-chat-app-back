@@ -2,12 +2,12 @@ import Joi from "joi";
 import ChatRoom from "../models/chatRoomModel.js";
 import User from "../models/userModel.js";
 
-// const determineIfUserExist = (user) => (value, helpers) => {
-//   if (!user) {
-//     return helpers.messages("There is no user with this ID");
-//   }
-//   return value;
-// };
+const determineIfUserExist = (user) => (value, helpers) => {
+  if (!user) {
+    return helpers.messages("There is no user with this ID");
+  }
+  return value;
+};
 
 const determineIfChatroomExist = (chatroom) => (value, helpers) => {
   if (!chatroom) {
@@ -33,10 +33,9 @@ const addMessageSchema = async (data) => {
         "any.required": "chatroom id is required",
       }),
     userId: Joi.string()
-      // .custom(determineIfUserExist(user))
+      .custom(determineIfUserExist(user))
       .required()
       .messages({
-        // "number.base": "user id should be a number",
         "any.required": "user id is required",
       }),
   });
