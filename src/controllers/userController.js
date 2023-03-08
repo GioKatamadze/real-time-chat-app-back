@@ -57,3 +57,17 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
+export const getAllUsers = async (_, res) => {
+  const data = await User.find();
+  const newData = await data.map((user) => {
+    return {
+      name: user.name,
+      email: user.email,
+      id: user.id,
+      userId: user._id,
+    };
+  });
+
+  return res.json(newData);
+};
