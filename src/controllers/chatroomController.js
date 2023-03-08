@@ -26,7 +26,7 @@ export const getSingleChatroom = async (req, res) => {
   const newMessages = messages.map((message) => {
     return {
       content: message.content,
-      chatroomId: message.userId,
+      chatroomId: message.chatroomId,
       userId: message.userId,
       id: message.id,
     };

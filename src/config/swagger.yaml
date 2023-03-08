@@ -133,7 +133,7 @@ paths:
                 chatroomId:
                   type: number
                 userId:
-                  type: number
+                  type: string
             example:
               content: Awesome idea! Trying to find framework-specific project within hubs can be tedious
               chatroomId: 1

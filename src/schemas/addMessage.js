@@ -2,12 +2,12 @@ import Joi from "joi";
 import ChatRoom from "../models/chatRoomModel.js";
 import User from "../models/userModel.js";
 
-const determineIfUserExist = (user) => (value, helpers) => {
-  if (!user) {
-    return helpers.messages("There is no user with this ID");
-  }
-  return value;
-};
+// const determineIfUserExist = (user) => (value, helpers) => {
+//   if (!user) {
+//     return helpers.messages("There is no user with this ID");
+//   }
+//   return value;
+// };
 
 const determineIfChatroomExist = (chatroom) => (value, helpers) => {
   if (!chatroom) {
@@ -17,7 +17,7 @@ const determineIfChatroomExist = (chatroom) => (value, helpers) => {
 };
 
 const addMessageSchema = async (data) => {
-  const user = await User.findOne({ id: data.userId });
+  const user = await User.findOne({ _id: data.userId });
   const chatroom = await ChatRoom.findOne({ id: data.chatroomId });
   return Joi.object({
     content: Joi.string().min(4).required().messages({
@@ -32,11 +32,11 @@ const addMessageSchema = async (data) => {
         "number.base": "chatroom id should be a number",
         "any.required": "chatroom id is required",
       }),
-    userId: Joi.number()
-      .custom(determineIfUserExist(user))
+    userId: Joi.string()
+      // .custom(determineIfUserExist(user))
       .required()
       .messages({
-        "number.base": "user id should be a number",
+        // "number.base": "user id should be a number",
         "any.required": "user id is required",
       }),
   });
