@@ -2,7 +2,7 @@ import express from "express";
 import {
   getAllChatrooms,
   getSingleChatroom,
-} from "../controllers/chatroomcontroller.js";
+} from "../controllers/chatroomController.js";
 
 const chatroomRouter = express.Router();
 
